@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Етапи енергетичного обміну — інтерактивний урок</title>
+<style>
+:root{--bg:#fff4d6;--card:#fff;--ink:#16162b;--mut:#3a3a5a;--p:#4c1d95;--p2:#0e5a73;--ok:#14532d;--okb:#d1fae5;--bad:#7f1d1d;--badb:#fee2e2;--line:#a78bfa;--hl:#fde047;--h1:#4c1d95;--h2:#0e7490;--bt:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#110f28;--card:#1e1b3f;--ink:#fafaff;--mut:#e0dcff;--p:#ddd6fe;--p2:#a5f3fc;--ok:#bbf7d0;--okb:#14532d;--bad:#fecaca;--badb:#7f1d1d;--line:#7c6be0;--hl:#854d0e;--h1:#5b21b6;--h2:#0e7490}}
+:root[data-theme="dark"]{--bg:#110f28;--card:#1e1b3f;--ink:#fafaff;--mut:#e0dcff;--p:#ddd6fe;--p2:#a5f3fc;--ok:#bbf7d0;--okb:#14532d;--bad:#fecaca;--badb:#7f1d1d;--line:#7c6be0;--hl:#854d0e;--h1:#5b21b6;--h2:#0e7490}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,"Segoe UI",Arial,sans-serif}
+header{background:linear-gradient(120deg,var(--h1),var(--h2));color:#fff;padding:18px 16px;text-align:center}
+header h1{margin:0;font-size:1.5rem}header p{margin:4px 0 0}
+nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:10px;background:var(--card);position:sticky;top:env(safe-area-inset-top,0px);z-index:5;border-bottom:3px solid var(--line)}
+nav button{flex:1 1 140px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:9px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer}
+nav button.on{background:var(--p);color:var(--bt);border-color:var(--p)}
+:root:not([data-theme="light"]) nav button.on{color:#16162b;background:#ddd6fe}
+main{max-width:860px;margin:0 auto;padding:14px}
+.pg{display:none}.pg.on{display:block}
+.card{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:14px 16px;margin:14px 0}
+h2{color:var(--p);margin:.2em 0 .5em}h3{margin:.2em 0}
+.pts{display:inline-block;background:var(--hl);color:#16162b;font-weight:800;border-radius:20px;padding:2px 12px;font-size:.9rem;margin-left:6px}
+.s1{border-left:10px solid #db2777}.s2{border-left:10px solid #d97706}.s3{border-left:10px solid #059669}
+input[type=text],input[type=number],select{font:inherit;padding:6px 8px;border:2px solid var(--p);border-radius:8px;background:var(--card);color:var(--ink);max-width:100%}
+.btn{background:var(--p);color:var(--bt);border:0;border-radius:10px;padding:10px 20px;font:inherit;font-weight:800;cursor:pointer;margin-top:8px}
+:root:not([data-theme="light"]) .btn{background:#ddd6fe;color:#16162b}
+.btn:disabled{opacity:.55;cursor:default}
+.q{padding:8px 10px;margin:6px 0;border-radius:10px;border:2px solid transparent}
+.q.ok{background:var(--okb);color:var(--ok);border-color:var(--ok)}.q.bad{background:var(--badb);color:var(--bad);border-color:var(--bad)}
+.fb{font-weight:700;margin-top:6px}label{margin-right:14px;cursor:pointer}
+table{border-collapse:collapse;width:100%}td,th{border:2px solid var(--line);padding:6px 8px;text-align:left}
+.big{font-size:2.4rem;font-weight:900;color:var(--p)}
+.tip{background:var(--card);border:2px dashed var(--line);border-radius:10px;padding:8px 12px;margin:8px 0}
+.lv{border-top:8px solid}.l1{border-color:#2563eb}.l2{border-color:#059669}.l3{border-color:#d97706}.l4{border-color:#db2777}
+.rec{outline:4px solid var(--hl)}
+.eq{font-family:Georgia,serif;background:var(--hl);color:#16162b;padding:8px;border-radius:8px;overflow-x:auto}
+@media print{nav,.btn{display:none}}
+</style></head><body>
+<header><h1>🔬 Етапи енергетичного обміну</h1><p>Біологія, 9 клас · § 23 · <b id="who"></b></p></header>
+<nav id="nav"></nav>
+<main>
+
+<section class="pg on" id="p0">
+<div class="card"><h2>👋 Вітаємо на уроці!</h2>
+<p>Прочитай теорію, виконай завдання (разом <b>12 балів</b>), оціни себе й отримай поради та домашнє завдання.</p>
+<p><label>Прізвище та ім’я:<br><input type="text" id="name" placeholder="Наприклад: Шевченко Тарас" style="width:100%;max-width:420px"></label></p>
+<p><label>Клас: <input type="text" id="cls" placeholder="9-А" style="width:90px"></label></p>
+<button class="btn" onclick="start()">Почати урок ▶</button><div class="fb" id="nerr"></div></div>
+<div class="card"><h3>🤔 Поміркуй перед початком</h3><p>Навіщо клітинам енергія? Як живуть організми без кисню?</p></div>
+</section>
+
+<section class="pg" id="p1">
+<div class="card"><h2>📘 Коротка теорія</h2>
+<p><b>АТФ</b> — універсальна одиниця обігу енергії в клітині. Частина енергії розсіюється як тепло, частина запасається в макроергічних зв’язках АТФ. Енергетичний обмін має <b>три послідовні етапи</b>:</p></div>
+<div class="card s1"><h3>1️⃣ Підготовчий</h3><p>Цитоплазма клітин і травний канал. Біополімери (білки, жири, полісахариди) розщеплюються ферментами до <b>мономерів</b>. Енергії мало — вона розсіюється як тепло. <b>АТФ не синтезується.</b></p></div>
+<div class="card s2"><h3>2️⃣ Безкисневий (анаеробний) — гліколіз</h3><p>Цитоплазма, <b>без кисню</b>. Глюкоза → <b>2 молекули піровиноградної кислоти</b> (пірувату). Виходить лише <b>2 АТФ</b>, ефективність 35–40 %. Без кисню піруват → молочна кислота (лактат). Подібні процеси — <b>бродіння</b> (молочнокисле, спиртове).</p></div>
+<div class="card s3"><h3>3️⃣ Кисневий (аеробний)</h3><p>Мітохондрії. <b>Цикл Кребса</b> — у матриксі: доокиснення до CO₂, відщеплення Гідрогену, який приєднує <b>НАД</b> (→ НАД·Н). <b>Дихальний ланцюг</b> — на внутрішній мембрані: електрони переносяться, H⁺ накопичуються зовні, <b>кисень — кінцевий акцептор</b> електронів: 4H⁺ + 4ē + O → 2H₂O. АТФ-соми синтезують АТФ (близько 36 молекул).</p></div>
+<div class="card"><h3>🧮 Підсумкове рівняння</h3>
+<div class="eq">C₆H₁₂O₆ + 38АДФ + 38H₃PO₄ + 6O₂ → 38АТФ + 6CO₂ + 44H₂O</div>
+<p>Повне розщеплення 1 глюкози = 2 АТФ (гліколіз) + 36 АТФ (кисневий етап) = <b>38 АТФ</b>. Без кисню — лише 2 АТФ.</p>
+<p>🏅 Ганс Кребс відкрив цикл у 1937 р., Нобелівська премія — 1953 р.</p></div>
+<button class="btn" onclick="go(2)">До завдань ▶</button>
+</section>
+
+<section class="pg" id="p2"><div id="tasks"></div>
+<div class="card"><button class="btn" onclick="go(3)">Завершити й перейти до самооцінювання ▶</button></div></section>
+
+<section class="pg" id="p3"><div id="selfbox"></div></section>
+
+<section class="pg" id="p4">
+<div class="card"><h2>🏠 Домашнє завдання (рівневе)</h2>
+<p>Обери рівень за своїм результатом (рекомендований рівень виділено жовтою рамкою) або за бажанням — вищий. Повторно прочитай § 23, с. 100–103.</p></div>
+
+<div class="card lv l2" id="h2"><h3>🟢 Середній рівень (4–6 балів)</h3><ul><li>Склади схему «Три етапи енергетичного обміну» зі стрілками, місцем і результатом кожного етапу.</li><li>Поясни, чому гліколіз малоефективний, але важливий.</li><li>Розв’яжи: скільки АТФ утвориться при повному розщепленні 4 молекул глюкози? А лише гліколізом?</li></ul></div>
+<div class="card lv l3" id="h3"><h3>🟠 Достатній рівень (7–9 балів)</h3><ul><li>Порівняльна таблиця «Гліколіз і кисневий етап»: місце, умови, продукти, кількість АТФ, ефективність.</li><li>Опиши шлях електронів у дихальному ланцюгу (мал. 23.2) і роль кисню.</li><li>Поясни, чому нестача кисню небезпечна для аеробів, та що відбувається в м’язах при інтенсивному навантаженні.</li></ul></div>
+<div class="card lv l4" id="h4"><h3>🔴 Високий рівень (10–12 балів)</h3><ul><li>Міні-проєкт (презентація або буклет): «Бродіння в житті людини» — молочнокисле й спиртове, приклади в господарстві.</li><li>Склади 5 власних задач на обчислення АТФ різної складності з відповідями.</li><li>Знайди й проаналізуй складові назви НАД (нікотинамідаденіндинуклеотид), зв’яжи з хімією.</li></ul></div>
+<button class="btn" onclick="window.print()">🖨️ Друк</button>
+</section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const NAMES=["Початок","Теорія","Завдання","Самооцінювання","Домашнє завдання"];
+let cur=0,started=false;
+const M={tf:2,gap:2,mt:2,sq:1,ts:3,pr:2},S={tf:0,gap:0,mt:0,sq:0,ts:0,pr:0},D={};
+const TT={tf:"Так/Ні",gap:"Пропуски",mt:"Відповідність",sq:"Послідовність",ts:"Тест",pr:"Практичні"};
+$("nav").innerHTML=NAMES.map((n,i)=>`<button onclick="go(${i})" id="nb${i}">${i+1}. ${n}</button>`).join("");
+function go(n){if(n>0&&!started){$("nerr").textContent="⚠️ Спершу введіть прізвище та ім’я і натисніть «Почати».";n=0}
+ if(n==3)selfRender();if(n==4)hw();
+ document.querySelectorAll(".pg").forEach((e,i)=>e.classList.toggle("on",i==n));
+ document.querySelectorAll("nav button").forEach((e,i)=>e.classList.toggle("on",i==n));cur=n;scrollTo(0,0)}
+function start(){const v=$("name").value.trim();if(v.split(/\s+/).length<2){$("nerr").textContent="⚠️ Введіть прізвище та ім’я (два слова).";return}
+ started=true;$("who").textContent="👤 "+v+($("cls").value?" · "+$("cls").value:"");go(1)}
+const sel=(id,o)=>`<select id="${id}"><option value="">— обери —</option>${o.map((x,i)=>`<option value="${i}">${x}</option>`).join("")}</select>`;
+const mark=(id,ok,msg)=>{const e=$(id);e.classList.add(ok?"ok":"bad");if(!ok&&msg)e.insertAdjacentHTML("beforeend",`<div class="fb">✔ Правильно: ${msg}</div>`)};
+const done=(k,id,extra)=>{S[k]=Math.round(S[k]*10)/10;$(id).disabled=true;$("r_"+k).innerHTML=`Результат: <b>${S[k]} з ${M[k]}</b> балів ${S[k]==M[k]?"🎉":""}`};
+const TF=[["На підготовчому етапі енергетичного обміну синтезуються молекули АТФ.",0],["Гліколіз відбувається в цитоплазмі клітин.",1],["Дихальний ланцюг розташований у цитоплазмі.",0],["Кисень є кінцевим акцептором електронів у дихальному ланцюгу.",1]];
+const GAP=[["Безкисневий етап енергетичного обміну ще називають ",0],["Продуктом гліколізу є дві молекули ",1],["Універсальна одиниця обігу енергії в клітині — ",2],["Кінцевим акцептором електронів у дихальному ланцюгу є ",3]];
+const GO=["анаеробним","піровиноградної кислоти","АТФ","кисень","аеробним","глюкоза"];
+const MT=[["Підготовчий етап",2],["Гліколіз",0],["Цикл Кребса",3],["Дихальний ланцюг",1]];
+const MO=["цитоплазма; з глюкози утворюються 2 піруват і 2 АТФ","внутрішня мембрана мітохондрій; утворюється вода","розщеплення біополімерів до мономерів; енергія розсіюється як тепло","матрикс мітохондрій; доокиснення до CO₂, відновлення НАД"];
+const SQ=["Гліколіз","Підготовчий етап","Дихальний ланцюг","Цикл Кребса"],SA=[2,1,4,3];
+const TS=[["Скільки АТФ утворюється під час гліколізу з 1 молекули глюкози?",["2","36","38","0"],0],["Яка сполука є головним переносником Гідрогену в мітохондріях?",["АДФ","НАД","піруват","лактат"],1],["Чому нестача кисню небезпечна для аеробних організмів?",["Зупиняється підготовчий етап","Кисневий етап неможливий, порушується метаболізм","Гліколіз дає 38 АТФ","Припиняється утворення мономерів"],1]];
+function build(){let h="";
+h+=`<div class="card"><h2>✅❌ 1. Так чи ні? <span class="pts">2 бали (по 0,5)</span></h2>`+TF.map((t,i)=>`<div class="q" id="tf${i}">${i+1}. ${t[0]}<br><label><input type="radio" name="tf${i}" value="1"> Так</label><label><input type="radio" name="tf${i}" value="0"> Ні</label></div>`).join("")+`<button class="btn" id="b_tf" onclick="chk('tf')">Перевірити</button><div class="fb" id="r_tf"></div></div>`;
+h+=`<div class="card"><h2>✏️ 2. Заповни пропуски <span class="pts">2 бали (по 0,5)</span></h2>`+GAP.map((t,i)=>`<div class="q" id="gap${i}">${i+1}. ${t[0]}${sel("g"+i,GO)}.</div>`).join("")+`<button class="btn" id="b_gap" onclick="chk('gap')">Перевірити</button><div class="fb" id="r_gap"></div></div>`;
+h+=`<div class="card"><h2>🔗 3. Встанови відповідність <span class="pts">2 бали (по 0,5)</span></h2><p>До кожного етапу добери характеристику.</p>`+MT.map((t,i)=>`<div class="q" id="mt${i}"><b>${t[0]}</b> → ${sel("m"+i,MO)}</div>`).join("")+`<button class="btn" id="b_mt" onclick="chk('mt')">Перевірити</button><div class="fb" id="r_mt"></div></div>`;
+h+=`<div class="card"><h2>🔢 4. Послідовність <span class="pts">1 бал</span></h2><p>Пронумеруй етапи від 1 до 4 у правильному порядку (0,25 бала за кожен).</p>`+SQ.map((t,i)=>`<div class="q" id="sq${i}">${sel("s"+i,["1","2","3","4"])} ${t}</div>`).join("")+`<button class="btn" id="b_sq" onclick="chk('sq')">Перевірити</button><div class="fb" id="r_sq"></div></div>`;
+h+=`<div class="card"><h2>📝 5. Тест <span class="pts">3 бали (по 1)</span></h2>`+TS.map((t,i)=>`<div class="q" id="ts${i}"><b>${i+1}. ${t[0]}</b><br>${t[1].map((o,j)=>`<label><input type="radio" name="ts${i}" value="${j}"> ${"АБВГ"[j]}) ${o}</label>`).join("<br>")}</div>`).join("")+`<button class="btn" id="b_ts" onclick="chk('ts')">Перевірити</button><div class="fb" id="r_ts"></div></div>`;
+h+=`<div class="card"><h2>🧪 6. Практичні завдання <span class="pts">2 бали (по 1)</span></h2>
+<div class="q" id="pr0">1) Організм повністю (аеробно) розщеплює <b>3 молекули глюкози</b>. Скільки молекул АТФ утвориться? <input type="number" id="a0" style="width:100px"></div>
+<div class="q" id="pr1">2) Молочнокислі бактерії без кисню розщеплюють <b>5 молекул глюкози</b> гліколізом. Скільки АТФ утвориться? <input type="number" id="a1" style="width:100px"></div>
+<p class="tip">💡 Підказка: повне розщеплення 1 глюкози — 38 АТФ; гліколіз — 2 АТФ.</p><button class="btn" id="b_pr" onclick="chk('pr')">Перевірити</button><div class="fb" id="r_pr"></div></div>`;
+$("tasks").innerHTML=h}
+function chk(k){let s=0;
+ if(k=="tf")TF.forEach((t,i)=>{const r=document.querySelector(`input[name=tf${i}]:checked`);const ok=r&&+r.value==t[1];if(ok)s+=.5;mark("tf"+i,ok,t[1]?"Так":"Ні")});
+ if(k=="gap")GAP.forEach((t,i)=>{const v=$("g"+i).value;const ok=v!==""&&+v==t[1];if(ok)s+=.5;mark("gap"+i,ok,GO[t[1]])});
+ if(k=="mt")MT.forEach((t,i)=>{const v=$("m"+i).value;const ok=v!==""&&+v==t[1];if(ok)s+=.5;mark("mt"+i,ok,MO[t[1]])});
+ if(k=="sq")SQ.forEach((t,i)=>{const v=$("s"+i).value;const ok=v!==""&&+v+1==SA[i];if(ok)s+=.25;mark("sq"+i,ok,SA[i])});
+ if(k=="ts")TS.forEach((t,i)=>{const r=document.querySelector(`input[name=ts${i}]:checked`);const ok=r&&+r.value==t[2];if(ok)s+=1;mark("ts"+i,ok,t[1][t[2]])});
+ if(k=="pr")[[114,"0"],[10,"1"]].forEach((a,i)=>{const ok=$("a"+i).value!==""&&+$("a"+i).value==a[0];if(ok)s+=1;mark("pr"+i,ok,a[0]+" АТФ ("+(i?"5 × 2":"3 × 38")+")")});
+ S[k]=s;done(k,"b_"+k)}
+const total=()=>Math.round(Object.values(S).reduce((a,b)=>a+b,0)*10)/10;
+const SELF=["Можу назвати й охарактеризувати три етапи енергетичного обміну","Можу пояснити, що таке гліколіз і чому він важливий","Можу пояснити роль циклу Кребса, НАД і дихального ланцюга","Можу розв’язувати задачі на кількість АТФ"];
+function selfRender(){const t=total();
+ const rows=Object.keys(M).map(k=>`<tr><td>${TT[k]}</td><td>${S[k]} / ${M[k]}</td><td>${"█".repeat(Math.round(S[k]/M[k]*10))}${"░".repeat(10-Math.round(S[k]/M[k]*10))}</td></tr>`).join("");
+ if(!$("selfbox").dataset.b){$("selfbox").dataset.b=1;$("selfbox").innerHTML=`<div class="card"><h2>🪞 Самооцінювання</h2><div id="res"></div></div>
+ <div class="card"><h3>Оціни свої знання</h3>${SELF.map((s,i)=>`<p>${s}:<br>${sel("sf"+i,["Ні","Частково","Так"])}</p>`).join("")}
+ <p>Що було найлегшим / найскладнішим? <br><input type="text" id="cmt" style="width:100%" placeholder="Напиши коротко"></p>
+ <button class="btn" onclick="advice()">Отримати поради 💬</button></div><div id="adv"></div>`}
+ $("res").innerHTML=`<p>Учень(иця): <b>${$("name").value}</b></p><div class="big">${t} / 12</div><p>Рівень: <b>${t>=10?"високий":t>=7?"достатній":"середній"}</b></p><table><tr><th>Завдання</th><th>Бали</th><th></th></tr>${rows}</table>`}
+function advice(){const t=total();let v=0,n=0;SELF.forEach((s,i)=>{const x=$("sf"+i).value;if(x!==""){v+=+x;n++}});
+ if(n<4){$("adv").innerHTML=`<div class="card"><div class="fb">⚠️ Відповідай на всі чотири пункти самооцінювання.</div></div>`;return}
+ const avg=v/8,rate=t/12;let a=[];
+ const T={tf:"Повтори, де саме відбувається кожен етап і що вони дають (теорія, с. 100–101). Склади міні-таблицю.",gap:"Вивчи терміни: анаеробний, аеробний, піруват, АТФ, акцептор. Склади до кожного власне речення.",mt:"Намалюй схему клітини й мітохондрії та підпиши, де відбувається кожен етап (мал. 23.1, 23.2).",sq:"Запам’ятай порядок: підготовчий → гліколіз → цикл Кребса → дихальний ланцюг. Придумай скорочення.",ts:"Перечитай про НАД, роль кисню та наслідки його нестачі; ставай на місце клітини й пояснюй причини.",pr:"Потренуйся в обчисленнях: 2 АТФ — гліколіз, 36 АТФ — кисневий етап, разом 38 на 1 глюкозу. Розв’яжи ще 3 задачі зі зміненими числами."};
+ Object.keys(M).forEach(k=>{if(S[k]/M[k]<.6)a.push("📌 <b>"+TT[k]+":</b> "+T[k])});
+ if(!a.length)a.push("🌟 Усі типи завдань виконано впевнено. Спробуй пояснити тему однокласнику — так знання міцнішають.");
+ let c=t>=10?"🏆 Чудовий результат! Обирай домашнє завдання високого рівня й досліджуй бродіння.":t>=7?"👍 Добре! Закріпи слабкі місця й виконуй завдання достатнього рівня.":t>=4?"🙂 Непогано, але є прогалини. Поверніться до теорії та виконуй завдання середнього рівня.":"💪 Не засмучуйся — це старт. Перечитай § 23 по етапах, по одному на день, і виконуй завдання середнього рівня.";
+ let m=avg-rate>.25?"🔎 Ти трохи переоцінюєш себе: впевненість вища за результат. Перевіряй відповіді за підручником.":rate-avg>.25?"🌱 Ти знаєш більше, ніж думаєш. Вір у свої сили й відповідай активніше.":"✅ Твоя самооцінка збігається з результатом — ти добре розумієш власні знання.";
+ $("adv").innerHTML=`<div class="card"><h2>💬 Індивідуальні поради для ${$("name").value.split(/\s+/)[1]||$("name").value}</h2><p>${c}</p><p>${m}</p>${a.map(x=>`<div class="tip">${x}</div>`).join("")}${$("cmt").value?`<p><i>Твій коментар: «${$("cmt").value.replace(/</g,"&lt;")}»</i></p>`:""}<button class="btn" onclick="go(4)">До домашнього завдання ▶</button></div>`}
+function hw(){const t=total(),l=t>=10?4:t>=7?3:2;[2,3,4].forEach(i=>$("h"+i).classList.toggle("rec",i==l))}
+build();
+</script></body></html>
